@@ -1,0 +1,457 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant calm (&:where(.calm, .calm *));
+
+@theme inline {
+  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-hanken), ui-sans-serif, sans-serif;
+  --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --color-ink: var(--ink);
+  --color-cream: var(--cream);
+  --color-paper: var(--paper);
+  --color-line: var(--line);
+  --color-ember: var(--ember);
+  --color-ember-ink: var(--ember-ink);
+  --color-ember-tint: var(--ember-tint);
+  --color-ember-border: var(--ember-border);
+  --color-lemon: var(--lemon);
+  --color-bubblegum: var(--bubblegum);
+  --color-sky: var(--sky);
+
+  --color-viridian: var(--viridian);
+  --color-viridian-ink: var(--viridian-ink);
+  --color-viridian-muted: var(--viridian-muted);
+  --color-viridian-tint: var(--viridian-tint);
+  --color-viridian-border: var(--viridian-border);
+  --color-mint: var(--mint);
+
+  --color-success: var(--success);
+  --color-success-tint: var(--success-tint);
+  --color-warn: var(--warn);
+  --color-warn-tint: var(--warn-tint);
+  --color-warn-border: var(--warn-border);
+  --color-danger: var(--danger);
+  --color-danger-tint: var(--danger-tint);
+  --color-danger-border: var(--danger-border);
+
+  --color-primary-hover: var(--primary-hover);
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-3xl: 24px;
+  --radius-4xl: 28px;
+
+  --shadow-soft: 0 1px 0 rgb(20 17 15 / 0.04), 0 1px 3px rgb(20 17 15 / 0.06);
+  --shadow-lift: 0 2px 0 rgb(20 17 15 / 0.05), 0 12px 32px -8px rgb(20 17 15 / 0.18);
+  --shadow-hard: var(--pop-shadow);
+  --shadow-hard-sm: var(--pop-shadow-sm);
+}
+
+/*
+ * Ember #FF5A1F is a fill colour: on cream it only reaches 2.9:1, so text
+ * and the italic headline word use --ember-ink (#C9400A: 4.6:1 on cream, 3.8:1 on lemon).
+ */
+:root {
+  color-scheme: light;
+  --ink: #14110f;
+  --cream: #fff6e8;
+  --paper: #ffffff;
+  --line: #14110f;
+
+  --ember: #ff5a1f;
+  --ember-ink: #c9400a;
+  --ember-tint: #ffe6da;
+  --ember-border: #ffb896;
+  --lemon: #ffe14d;
+  --bubblegum: #ff8fb1;
+  --sky: #7cc6fe;
+
+  --viridian: #0b7a6b;
+  --viridian-ink: #07524a;
+  --viridian-muted: #2f6b62;
+  --viridian-tint: #e4f3f0;
+  --viridian-border: #a9dccf;
+  --mint: #bdebdd;
+
+  --success: #17803d;
+  --success-tint: #e3f5ea;
+  --warn: #8a5a12;
+  --warn-tint: #fff1cc;
+  --warn-border: #f0cf7a;
+  --danger: #c0342b;
+  --danger-tint: #fde7e4;
+  --danger-border: #f3b4ad;
+
+  --background: var(--cream);
+  --foreground: var(--ink);
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+  --primary: var(--ember);
+  --primary-foreground: var(--ink);
+  --primary-hover: #ff7340;
+  --secondary: #fbecd4;
+  --secondary-foreground: var(--ink);
+  --muted: #f7ead6;
+  --muted-foreground: #5e564e;
+  --accent: #fbecd4;
+  --accent-foreground: var(--ink);
+  --destructive: var(--danger);
+  --border: #e8dcc8;
+  --input: #e0d2bb;
+  --ring: var(--ink);
+  --chart-1: var(--ember);
+  --chart-2: var(--viridian);
+  --chart-3: var(--sky);
+  --chart-4: var(--bubblegum);
+  --chart-5: var(--lemon);
+  --radius: 12px;
+  --sidebar: #fff1db;
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--ember);
+  --sidebar-primary-foreground: var(--ink);
+  --sidebar-accent: var(--paper);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ink);
+
+  --pop-shadow: 4px 4px 0 var(--line);
+  --pop-shadow-sm: 1px 1px 0 var(--line);
+  --pop-shadow-hover: 6px 6px 0 var(--line);
+  --grain-opacity: 0.03;
+}
+
+.dark {
+  color-scheme: dark;
+  --line: #fff6e8;
+  --ember-ink: #ff5a1f;
+  --ember-tint: #3a1d10;
+  --ember-border: #6e2f14;
+
+  --viridian: #3fbfa9;
+  --viridian-ink: #bdebdd;
+  --viridian-muted: #8fd3c3;
+  --viridian-tint: #0f2a26;
+  --viridian-border: #1f5a50;
+
+  --success: #5fce86;
+  --success-tint: #12281a;
+  --warn: #f2c14e;
+  --warn-tint: #2d2310;
+  --warn-border: #5c4718;
+  --danger: #ff8a7f;
+  --danger-tint: #2f1412;
+  --danger-border: #6b2a24;
+
+  --background: var(--ink);
+  --foreground: var(--cream);
+  --card: #1e1a17;
+  --card-foreground: var(--cream);
+  --popover: #1e1a17;
+  --popover-foreground: var(--cream);
+  --secondary: #2a2420;
+  --secondary-foreground: var(--cream);
+  --muted: #26211d;
+  --muted-foreground: #bdb2a3;
+  --accent: #2a2420;
+  --accent-foreground: var(--cream);
+  --border: #3a322b;
+  --input: #463d35;
+  --ring: var(--cream);
+  --sidebar: #1a1613;
+  --sidebar-foreground: var(--cream);
+  --sidebar-accent: #26211d;
+  --sidebar-accent-foreground: var(--cream);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--cream);
+  --grain-opacity: 0.05;
+}
+
+/* Calm keeps colour and layout; it drops hard shadows and rotation. */
+.calm {
+  --pop-shadow: 0 1px 0 rgb(20 17 15 / 0.05), 0 2px 6px rgb(20 17 15 / 0.08);
+  --pop-shadow-sm: 0 1px 2px rgb(20 17 15 / 0.08);
+  --pop-shadow-hover: 0 2px 0 rgb(20 17 15 / 0.05), 0 6px 14px rgb(20 17 15 / 0.1);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  h1,
+  h2 {
+    font-family: var(--font-display);
+    letter-spacing: -0.03em;
+  }
+  ::selection {
+    background: var(--lemon);
+    color: var(--ink);
+  }
+}
+
+@layer components {
+  /* The one Instrument Serif italic word per headline. */
+  .serif-italic {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--ember-word, var(--ember-ink));
+  }
+
+  /* Surfaces painted in a bright: ink text, and the italic word stays on ember-ink. */
+  .on-bright {
+    color: var(--ink);
+    --ember-word: #c9400a;
+    --foreground: var(--ink);
+    --muted-foreground: #3d3630;
+    --border: rgb(20 17 15 / 0.18);
+    --line: #14110f;
+  }
+
+  /* Interactive surface: 2px outline plus a hard offset shadow that presses in. */
+  .pop {
+    border: 2px solid var(--line);
+    box-shadow: var(--pop-shadow);
+  }
+  .pop-press {
+    border: 2px solid var(--line);
+    box-shadow: var(--pop-shadow);
+    transition:
+      transform 260ms cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 260ms cubic-bezier(0.34, 1.56, 0.64, 1),
+      background-color 150ms;
+  }
+  .pop-press:hover {
+    box-shadow: var(--pop-shadow-hover);
+    transform: translate(-1px, -1px);
+  }
+  .pop-press:active {
+    box-shadow: var(--pop-shadow-sm);
+    transform: translate(3px, 3px) scale(0.96);
+    transition-duration: 70ms;
+  }
+  .calm .pop-press:hover,
+  .calm .pop-press:active {
+    transform: none;
+  }
+
+  .tilt {
+    rotate: var(--tilt, 0deg);
+  }
+  .calm .tilt {
+    rotate: 0deg;
+  }
+
+  .wobble:hover {
+    animation: wobble 420ms ease-in-out;
+  }
+
+  .dot-matrix {
+    background-image: radial-gradient(circle, rgb(20 17 15 / 0.16) 1px, transparent 1.2px);
+    background-size: 14px 14px;
+  }
+  .dark .dot-matrix {
+    background-image: radial-gradient(circle, rgb(255 246 232 / 0.14) 1px, transparent 1.2px);
+  }
+  .on-bright.dot-matrix,
+  .on-bright .dot-matrix {
+    background-image: radial-gradient(circle, rgb(20 17 15 / 0.14) 1px, transparent 1.2px);
+  }
+
+  /* Masking tape stuck across the top edge of a card. */
+  .tape {
+    position: relative;
+  }
+  .tape::after {
+    content: '';
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    width: 84px;
+    height: 22px;
+    translate: -50% 0;
+    rotate: -4deg;
+    background: rgb(255 225 77 / 0.75);
+    border-left: 1px dashed rgb(20 17 15 / 0.25);
+    border-right: 1px dashed rgb(20 17 15 / 0.25);
+    pointer-events: none;
+  }
+  .calm .tape::after {
+    rotate: 0deg;
+  }
+
+  .recall-ticker {
+    animation: marquee 38s linear infinite;
+  }
+  .recall-ticker:hover {
+    animation-play-state: paused;
+  }
+
+  .topbar-memory-compact {
+    display: none;
+  }
+
+  @media (min-width: 1216px) and (max-width: 1535px) {
+    .topbar-memory-compact {
+      display: flex;
+    }
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes wobble {
+  0%,
+  100% {
+    rotate: var(--tilt, 0deg);
+  }
+  25% {
+    rotate: calc(var(--tilt, 0deg) - 4deg);
+  }
+  75% {
+    rotate: calc(var(--tilt, 0deg) + 4deg);
+  }
+}
+
+@keyframes thread-in {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes elio-blink {
+  0%,
+  94%,
+  100% {
+    transform: scaleY(1);
+  }
+  97% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes elio-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes elio-wave {
+  0%,
+  100% {
+    rotate: 0deg;
+  }
+  50% {
+    rotate: -14deg;
+  }
+}
+
+.elio-blink {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: elio-blink 5s infinite;
+}
+.elio-bob {
+  animation: elio-bob 3.2s ease-in-out infinite;
+}
+.elio-wave {
+  transform-box: fill-box;
+  transform-origin: 85% 15%;
+  animation: elio-wave 900ms ease-in-out infinite;
+}
+
+.calm .recall-ticker,
+.calm .elio-bob,
+.calm .elio-wave,
+.calm .wobble:hover,
+.reduce-motion .recall-ticker,
+.reduce-motion .elio-blink,
+.reduce-motion .elio-bob,
+.reduce-motion .elio-wave,
+.reduce-motion .wobble:hover {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recall-ticker,
+  .elio-blink,
+  .elio-bob,
+  .elio-wave,
+  .wobble:hover {
+    animation: none;
+  }
+  .pop-press,
+  .pop-press:hover,
+  .pop-press:active {
+    transition: none;
+    transform: none;
+  }
+}
